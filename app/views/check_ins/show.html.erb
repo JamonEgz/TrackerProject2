@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mile run:</strong>
+  <%= @check_in.mile_run %>
+</p>
+
+<p>
+  <strong>Push ups:</strong>
+  <%= @check_in.push_ups %>
+</p>
+
+<p>
+  <strong>Sit ups:</strong>
+  <%= @check_in.sit_ups %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @check_in.weight %>
+</p>
+
+<%= link_to 'Edit', edit_check_in_path(@check_in) %> |
+<%= link_to 'Back', check_ins_path %>

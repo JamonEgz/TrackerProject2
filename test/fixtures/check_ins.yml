@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mile_run: 1
+  push_ups: 1
+  sit_ups: 1
+  weight: 1
+
+two:
+  mile_run: 1
+  push_ups: 1
+  sit_ups: 1
+  weight: 1

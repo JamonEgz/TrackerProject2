@@ -1,0 +1,162 @@
+$ rails new tracker
+$ cd tracker
+$ touch tracker2.txt
+$ open tracker2.txt
+
+$ rails g scaffold CheckIn mile_run:integer push_ups:integer sit_ups:integer weight:integer
+
+$ rails db:migrate
+
+
+- in Gemfile:
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+$ bundle install
+$ rails g bootstrap:install static
+
+~*~*~
+NOTE: We've installed this first so it's available, and so that later gems can interact with it.
+~*~*~
+
+- again in Gemfile:
+gem 'simple_form'
+
+$ bundle install
+$ rails g simple_form:install --bootstrap
+
+*
+*
+*
+*
+*
+****** Create a "welcome" landing page
+
+$ rails g controller Welcome index
+
+- in config/routes.rb set welcome as root - 
+  ##replace get 'welcome/index' with:
+  root 'welcome#index'
+
+****** Set up Devise and cancancan
+
+- in gemfile add, then save:
+
+gem 'devise'
+gem 'cancancan'
+
+~*~*~
+NOTE: devise allows secure users/login. cancancan allows you to have different levels of user with different levels of authorization.
+~*~*~
+
+$ bundle install
+
+****** Add Devise authentication
+
+$ rails g devise:install
+
+****** Set up development mailers
+
+- in config/environments/development.rb change line 30 from false to true
+config.action_mailer.raise_delivery_errors = true
+
+- still in config/environments/development.rb under line 7 paste the following action mailer code:
+#####
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #These settings are for the sending out email for active admin and consequently the   devise mailer
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = 
+  {
+    :address            => 'smtp.gmail.com',
+    :port               => 587,
+    :domain             => 'ENV[“GMAIL_DOMAIN”]', #you can also use google.com
+    :authentication     => :plain,
+    :user_name          => 'ENV[“GMAIL_USERNAME”]',
+    :password           => 'ENV[“GMAIL_PASSWORD”]'
+  }
+#####
+
+~*~*~
+NOTE: This sets up our mailer, except for, you know, GMAIL DOMAIN, GMAIL USERNAME, and GMAIL PASSWORD. We're gonna want those in a secure file.
+~*~*~
+
+- in gemfile add
+
+gem 'figaro'
+
+$ bundle install
+$ bundle exec figaro install
+
+~*~*~
+-- Now we have an application.yml file for confidential stuff
+~*~*~
+
+- in config/application.yml tell it your gmail info at the bottom
+GMAIL_DOMAIN: gmail.com
+GMAIL_USERNAME: YourUsername
+GMAIL_PASSWORD: y0urP@ssword
+
+#######
+########
+****** Add user & username
+
+$ rails g devise:views
+$ rails g devise User
+$ rails db:migrate
+
+
+$ rails g migration AddUsernameToUsers username:string age:string 
+$ rails db:migrate
+
+- in app/views/devise/registrations/new.html.erb AND app/views/devise/registrations/edit.html.erb replace current username/email fields with
+#####
+    <%= f.input :username, required: true, autofocus: true %>
+    <%= f.input :email, required: true %>
+#####
+
+~*~*~
+NOTE: We just added a property to User through Devise. Just like when we add a property to a regular model, we need to add it to our params. Unlike a regular model, Devise doesn't have its own controller. We'll take care of that in our application controller. (Most of this we'd have to do even if we'd added username to begin with.)
+~*~*~
+
+- in app/controllers/application_controller.rb replace all code with
+#####
+class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :exception
+
+  private
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  end
+  
+end
+#####
+
+#####
+-in gemfile add
+
+gem 'gravatarify', '~> 3.0.0'
+
+$ bundle install
+
+#####
+- in app/models/user.rb add
+  has_many :check_ins
+
+-in app/models/check_in.rb add
+  belongs_to :user
+
+
+######
+######
+
+
+Questions:
+- Do we want a different bootstap install (vs static)?
+
+
+Remember To:
+-include gravatar when developing views
+
