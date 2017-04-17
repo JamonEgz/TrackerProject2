@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+.navbar-default .navbar-brand {
+    color: blue;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: black;
+    background-color: transparent;
+}
+
+body {
+	padding-top: 70px;
+}
