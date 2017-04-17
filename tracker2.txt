@@ -148,10 +148,27 @@ $ bundle install
 -in app/models/check_in.rb add
   belongs_to :user
 
+#####
 
-######
-######
+make some changes to the Welcome page
 
+- in views/welcome/index change code to 
+
+<h1>Welcome to Your Fitness Tracker.</h1>
+<p>User our tool to keep track of your progress on key exercises.</p>
+
+
+
+
+##############
+- require login
+- user home page - place to enter check-in (link or javascript), list of check-ins, maybe a graph
+
+- add navigatio
+
+
+#############################
+#############################
 
 Questions:
 - Do we want a different bootstap install (vs static)?

@@ -1,10 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Check Ins</h1>
+</br>
+<%= link_to 'New Check In', new_check_in_path %>
+<br>
+<br>
 
 <table>
   <thead>
     <tr>
+      <th>Date</th>
       <th>Mile run</th>
       <th>Push ups</th>
       <th>Sit ups</th>
@@ -16,13 +21,14 @@
   <tbody>
     <% @check_ins.each do |check_in| %>
       <tr>
+        <td><%= check_in.created_at.strftime("%m/%d/%Y") %></td>
         <td><%= check_in.mile_run %></td>
         <td><%= check_in.push_ups %></td>
         <td><%= check_in.sit_ups %></td>
         <td><%= check_in.weight %></td>
-        <td><%= link_to 'Show', check_in %></td>
+       <!--  <td><%= link_to 'Show', check_in %></td> -->
         <td><%= link_to 'Edit', edit_check_in_path(check_in) %></td>
-        <td><%= link_to 'Destroy', check_in, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', check_in, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Check In', new_check_in_path %>
+
