@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Personal Fitness Tracker</a>
+      <%= link_to "JB Fitness Tracker", root_url, :class => "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      <li><%= link_to "New Check In", "#" %></li>
-        <li><%= link_to "Progress", "#" %></li>
+      <li><%= link_to "New Check In", new_check_in_path %></li>
+        <li><%= link_to "Progress", progress_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
