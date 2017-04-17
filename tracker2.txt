@@ -148,7 +148,9 @@ $ bundle install
 -in app/models/check_in.rb add
   belongs_to :user
 
-#####
+#####################################
+######## MONDAY NOTES ###############
+#####################################
 
 make some changes to the Welcome page
 
@@ -157,10 +159,107 @@ make some changes to the Welcome page
 <h1>Welcome to Your Fitness Tracker.</h1>
 <p>User our tool to keep track of your progress on key exercises.</p>
 
+######
+
+add a simple navigation (pulled from SmileBook)
+
+****** Create header (navbar)
+
+- in app/views/layouts/application.html.erb add just at top of body (above <%= yield %>)
+
+  <%= render "layouts/header" %>
+
+- in app/views/layouts create a new partial called _header.html.erb
+
+~*~*~
+NOTE: Partials need to start with an underscore & lowercase letter
+~*~*~
+
+- in app/views/layouts/_header.html.erb paste navbar from bootstrap
+
+- still in app/views/layouts/_header.html.erb replace first line with
+  <nav class="navbar navbar-default navbar-fixed-top">
+
+
+~*~*~
+NOTE: This makes it so the navbar stays at the top. But now the body is hidden behind the navbar, so
+~*~*~
+
+- in assets/stylesheets/application.css, add
+#####
+body {
+  padding-top:70px;
+}
+#####
+
+~*~*~
+We want a navbar-right that has a link to 'New Check In' and 'Progress'. IF the user is signed in, then we want a dropdown with the current user's name that links (again empty links) to Profile, Settings and Log Out (should be working links). ELSE, there should be a link to log in (again working).
+~*~*~
+
+- in app/views/layouts/_header.html.erb the result should look like this:
+#####
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Personal Fitness Tracker</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "New Check In", "#" %></li>
+        <li><%= link_to "Progress", "#" %></li>
+        <% if current_user %>
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile", "#" %></li>
+            <li><%= link_to "Settings", edit_user_registration_path %></li>
+            
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+        <% else %>
+        <li><%= link_to "Log In", new_user_session_path %></li>
+        <% end %>       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+#####
+
+*
+*
+*
+*
+*
+****** Add a Gravatar (user profile image)
+
+- in Gemfile add
+gem 'gravatarify', '~> 3.0.0'
+
+$ bundle install
+
+- in app/views/layouts/_header.html.erb under <% if current_user %> add
+<li><%= gravatar_tag current_user.email, size: 20 %></li>
 
 
 
-##############
+
+
+###################
+#### TASKS ########
+###################
 - require login
 - user home page - place to enter check-in (link or javascript), list of check-ins, maybe a graph
 
