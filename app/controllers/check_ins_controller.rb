@@ -1,4 +1,6 @@
 class CheckInsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_check_in, only: [:show, :edit, :update, :destroy]
 
   # GET /check_ins

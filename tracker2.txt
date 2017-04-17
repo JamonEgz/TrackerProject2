@@ -192,6 +192,14 @@ body {
 }
 #####
 
+before setting up nav bar, configure some routes
+
+- in config/routes add
+
+  get '/progress' => 'check_ins#index', as: 'progress'
+
+#####
+
 ~*~*~
 We want a navbar-right that has a link to 'New Check In' and 'Progress'. IF the user is signed in, then we want a dropdown with the current user's name that links (again empty links) to Profile, Settings and Log Out (should be working links). ELSE, there should be a link to log in (again working).
 ~*~*~
@@ -208,19 +216,19 @@ We want a navbar-right that has a link to 'New Check In' and 'Progress'. IF the 
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Personal Fitness Tracker</a>
+      <%= link_to "JB Fitness Tracker", root_url, :class => "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+      <li><%= link_to "New Check In", new_check_in_path %></li>
+        <li><%= link_to "Progress", progress_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "New Check In", "#" %></li>
-        <li><%= link_to "Progress", "#" %></li>
         <% if current_user %>
          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %><span class="caret"></span></a>
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= gravatar_tag current_user.email, size: 20 %> <%=  current_user.username %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", "#" %></li>
             <li><%= link_to "Settings", edit_user_registration_path %></li>
@@ -238,32 +246,20 @@ We want a navbar-right that has a link to 'New Check In' and 'Progress'. IF the 
 </nav>
 #####
 
-*
-*
-*
-*
-*
-****** Add a Gravatar (user profile image)
+Require login before checking in or viewing progress
 
-- in Gemfile add
-gem 'gravatarify', '~> 3.0.0'
+- in controllers/check_ins add
 
-$ bundle install
-
-- in app/views/layouts/_header.html.erb under <% if current_user %> add
-<li><%= gravatar_tag current_user.email, size: 20 %></li>
-
-
-
+  before_action :authenticate_user!
 
 
 ###################
 #### TASKS ########
 ###################
-- require login
-- user home page - place to enter check-in (link or javascript), list of check-ins, maybe a graph
+- Seed database
+- install and configure chart gem
 
-- add navigatio
+
 
 
 #############################
