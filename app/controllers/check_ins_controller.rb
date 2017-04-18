@@ -71,6 +71,6 @@ class CheckInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_in_params
-      params.require(:check_in).permit(:mile_run, :push_ups, :sit_ups, :weight)
+      params.require(:check_in).permit(:mile_run, :push_ups, :sit_ups, :weight, :user_id)
     end
 end

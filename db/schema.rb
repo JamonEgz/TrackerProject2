@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412120743) do
+ActiveRecord::Schema.define(version: 20170418144353) do
 
   create_table "check_ins", force: :cascade do |t|
     t.integer  "mile_run"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170412120743) do
     t.integer  "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
