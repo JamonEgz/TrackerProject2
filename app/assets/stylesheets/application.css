@@ -16,3 +16,22 @@
 body {
   padding-top:70px;
 }
+
+.panel-body>h1 {
+	text-align: center;
+}
+
+.panel-body {
+    padding: 15px;
+    background: black;
+    color: darkorange;
+}
+
+.jumbotron {
+	background-color: darkorange;
+	border-radius: 10px;
+}
+
+.panel-group {
+	margin-bottom: 50px;
+}
