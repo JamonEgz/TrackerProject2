@@ -1,0 +1,3 @@
+<% data = [[1,1],[2,3],[3,5],[4,8],[6,4],[7,2]] %>
+<%= line_chart data,  {discrete: true, library: {width: 600} }%>
+

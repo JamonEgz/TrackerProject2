@@ -1,0 +1,15 @@
+<h1>Mile Run</h1>
+
+
+<%= column_chart CheckIn.group(:created_at).sum(:mile_run) %>
+
+
+<h1>Sit Ups and Push Ups</h1>
+<%= line_chart [
+  {name: "Push Ups", data: CheckIn.group(:created_at).sum(:push_ups)},
+  {name: "Sit Ups", data: CheckIn.group(:created_at).sum(:sit_ups)}
+] %>
+
+<h1>Weight</h1>
+
+<%= area_chart CheckIn.group(:created_at).sum(:weight) %>

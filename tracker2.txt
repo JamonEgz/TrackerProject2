@@ -258,7 +258,7 @@ Require login before checking in or viewing progress
 
 -While preparing to seed the database with check ins, I realized that I hadn't associated user_id with a check in. Time to fix that.
 
-$ rails g migration AddUsertoCheck_in user_id:integer
+$ rails g migration AddUserIdtoCheckIn user_id:integer
 $ rails db:migrate
 
 - now we need to add the user_id to the check_ins_controller, at the bottom with the params
@@ -275,17 +275,26 @@ $ rails db:reset
 mile_run_array = [18, 17, 16, 16, 15]
 push_ups_array = [22, 25, 26, 27, 29]
 sit_ups_array = [31, 34, 36, 38, 40]
-weigt_array = [212, 210, 208, 206, 203]
-created_at_array = [2017-04-17 14:46:12.190401, 2017-04-24 14:46:12.190401, 2017-05-1 14:46:12.190401, 2017-05-08 14:46:12.190401, 2017-05-15 14:46:12.190401]
+weight_array = [212, 210, 208, 206, 203]
+created_at_array = ["2017-04-17 14:46:12", "2017-04-24 14:46:12", "2017-05-1 14:46:12", "2017-05-08 14:46:12", "2017-05-15 14:46:12"]
 
 5.times do |x|
-  Check_ins.create(username: JamesTGledhill, mile_run:mile_run_array[x], push_ups: push_ups_array[x], sit_ups: sit_ups_array[x], weight: weight_array[x], created_at: created_at_array[x])
+  CheckIn.create(user_id: 1, mile_run: mile_run_array[x], push_ups: push_ups_array[x], sit_ups: sit_ups_array[x], weight: weight_array[x], created_at: created_at_array[x])
+end
 
 puts "Test check ins have been created"
 
 ######
 
 $ rails db:seed
+
+#####
+-Now to add charts components
+
+-in Gemfiles add
+
+####
+gem 'chartkick'
 
 
 
