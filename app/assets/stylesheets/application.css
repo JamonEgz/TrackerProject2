@@ -25,6 +25,7 @@ body {
     padding: 15px;
     background: black;
     color: darkorange;
+    text-align: center;
 }
 
 .jumbotron {
@@ -34,4 +35,16 @@ body {
 
 .panel-group {
 	margin-bottom: 50px;
+	text-align: center;
 }
+
+.chart {
+	text-align: center
+}
+
+
+
+
+
+
+

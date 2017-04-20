@@ -1,24 +1,53 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" align="center"><%= notice %></p>
 
-<p>
-  <strong>Mile run:</strong>
-  <%= @check_in.mile_run %>
-</p>
 
-<p>
-  <strong>Push ups:</strong>
-  <%= @check_in.push_ups %>
-</p>
+<div class="panel-group">
+     <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAoS10pX8XqYVehzA9nX6nAoehR-xbkG02qCRWbOfG5-VBnJYD" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+            <br>
+            <strong>Mile run:</strong>
+  			<%= @check_in.mile_run %>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Sit ups:</strong>
-  <%= @check_in.sit_ups %>
-</p>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="https://img.utdstc.com/icons/256/push-ups-android.png" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+          <br>
+		  <strong>Push ups:</strong>
+		  <%= @check_in.push_ups %>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @check_in.weight %>
-</p>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="http://pool.img.aptoide.com/softonicstore/46c407a068ab6fdb6784aea5972ec90f_icon.png" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+          <br>
+		  <strong>Sit ups:</strong>
+		  <%= @check_in.sit_ups %>
+        </div>
+      </div>
+    </div>
 
+<div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="http://burnitin30.com/wp-content/uploads/2015/01/Scale-Icon-MF-295x300.png" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+          <br>
+		  <strong>Weight:</strong>
+		  <%= @check_in.weight %>
+        </div>
+      </div>
+    </div>
+<br>
 <%= link_to 'Edit', edit_check_in_path(@check_in) %> |
-<%= link_to 'Back', check_ins_path %>
+<%= link_to 'See Progress', check_ins_path %>
+  </div>
+</div>
+

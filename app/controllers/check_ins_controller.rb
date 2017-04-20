@@ -6,7 +6,7 @@ class CheckInsController < ApplicationController
   # GET /check_ins
   # GET /check_ins.json
   def index
-    @check_ins = CheckIn.all
+    # @check_ins = CheckIn.all
   end
 
   # GET /check_ins/1

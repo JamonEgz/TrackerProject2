@@ -1,3 +1,17 @@
 <% data = [[1,1],[2,3],[3,5],[4,8],[6,4],[7,2]] %>
 <%= line_chart data,  {discrete: true, library: {width: 600} }%>
 
+FROM Check Ins Index
+
+Buttons at top
+
+</br>
+<!-- <%= link_to 'New Check In', new_check_in_path %> -->
+<br>
+<br>
+<% @check_ins.each do |week| %>
+<div class="btn-group" role="group" aria-label="People Groups">
+      <%= link_to "Week of #{week.created_at.strftime("%m/%d/%Y")}", progress_path, class: "btn btn-default #{'active' unless params[:people]}" %>
+      
+</div>
+<% end %>

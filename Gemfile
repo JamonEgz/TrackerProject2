@@ -42,6 +42,7 @@ gem 'cancancan'
 gem 'figaro'
 gem 'gravatarify', '~> 3.0.0'
 gem 'chartkick'
+gem 'groupdate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
