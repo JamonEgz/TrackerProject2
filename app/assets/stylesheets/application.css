@@ -13,8 +13,30 @@
  *= require_tree .
  *= require_self
  */
+.navbar-default {
+    background-color: darkgrey;
+    border: 5px black;
+}
+.navbar-default .navbar-brand {
+	color: darkorange;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a :hover {
+    color: blue;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: blue;
+    background-color: transparent;
+}
+
 body {
-  padding-top:70px;
+  padding-top:30px;
+  background-color: white;
 }
 
 .panel-body>h1 {
@@ -31,6 +53,9 @@ body {
 .jumbotron {
 	background-color: darkorange;
 	border-radius: 10px;
+	border: solid blue 5px;
+	color: white;
+	text-shadow: 3px 2px black;
 }
 
 .panel-group {
@@ -42,9 +67,30 @@ body {
 	text-align: center
 }
 
+h1, .h1 {
+    font-size: 36px;
+    text-align: center;
+    color: darkorange;
+    font-weight: bold;
+    padding-top: 10px;
+}
 
+h2, .h2 {
+    font-size: 30px;
+    color: darkorange;
+    font-weight: bold;
+}
 
+.panel-group .panel-footer {
+    border-top: 0;
+    color: blue;
+    font-weight: bold;
+}
 
-
+button {
+    color: inherit;
+    font: inherit;
+    margin: 20px;
+}
 
 

@@ -5,25 +5,25 @@
 </div>
 
 <div class='chart'>
-<h2>Mile Run</h2>
+<h2>| Mile(s) Run |</h2>
 <%= column_chart current_user.check_ins.group_by_day(:created_at, series: false, format: "%B %d").sum(:mile_run) %>
 <br>
-<h2>Sit Ups and Push Ups</h2>
+<h2>| Sit Ups and Push Ups |</h2>
 <%= line_chart [
   {name: "Push Ups", data: current_user.check_ins.group_by_day(:created_at, series: false, format: "%B %d").sum(:push_ups)},
   {name: "Sit Ups", data: current_user.check_ins.group_by_day(:created_at, series: false, format: "%B %d").sum(:sit_ups)}
 ] %>
 <br>
-<h2>Weight</h2>
+<h2>| Weight |</h2>
 <%= area_chart current_user.check_ins.group_by_day(:created_at, series: false, format: "%B %d").sum(:weight) %>
-<h2>Check Ins</h2>
+<h2>| Check Ins |</h2>
 </div>
 
   <div class="row">
   
         <div class="panel-group">
           <% current_user.check_ins.each do |check_in| %>
-      <h3 class="row"><%= check_in.created_at.strftime("%m/%d/%Y") %></h3>
+      <h3 style="color: blue; border: darkorange;" class="row"><%= check_in.created_at.strftime("%m/%d/%Y") %></h3>
       <br>
         <div class="col-md-3">
         <div class="panel panel-default">

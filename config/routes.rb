@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
  	get '/progress' => 'check_ins#index', as: 'progress'
  	get '/chart' => 'chart#index', as: 'chart'
+ 	get '/profile' => 'profile#index'
 
 
 resources :charts, only: [] do
